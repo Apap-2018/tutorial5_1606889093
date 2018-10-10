@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<style>
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 50%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: center;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+</style>	
+	<title th:replace="fragments/fragment :: headerFragment (title='View semua Dealer')"></title>
+	
+	<object th:include="fragments/fragment :: css" th:remove="tag"></object>
+	<object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+
+<body>
+	<nav th:replace="fragments/fragment :: navbar"></nav>
+	<h2>Halaman Melihat Semua Dealer</h2>
+	<h2>View All Dealer</h2>
+	<div th:each="dealer : ${list}">
+			<br>
+			<p th:text="'Dealer dengan Id : ' + ${dealer.id}"></p> 
+			<p th:text="'Alamat : ' + ${dealer.alamat}"></p>
+			<p th:text="'No Telepon : ' + ${dealer.noTelp}"></p>
+			<table>
+				<tr>
+					<th align="center">Id</th>
+					<th align="center">Brand</th>
+					<th align="center">Type</th>
+					<th align="center">Price</th>
+					<th align="center">Amount</th>
+					
+				</tr>
+				<div th:each="car : ${dealer.listCar}">
+				<tr>
+					<td align="center" th:text="${car.id}"></td> 
+					<td align="center" th:text="${car.brand}"></td>
+					<td align="center" th:text="${car.type}"></td>
+					<td align="center" th:text="${car.price}"></td>
+					<td align="center" th:text="${car.amount}"></td>
+				</tr>
+				</div>
+			
+			</table>
+			
+		</div>
+
+	
+</body>
+
+</html>
